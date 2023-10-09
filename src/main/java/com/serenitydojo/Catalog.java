@@ -21,4 +21,3 @@ public class Catalog {
         return fruitWithPrice.keySet().stream().sorted().toList();
     }
 }
-
