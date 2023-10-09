@@ -28,7 +28,6 @@ public class Cart {
     }
 
     public double priceOf(CartItem item) {
-
         if (item.quantity() >= 5.0) {
             return catalog.getPriceOf(item.fruit()) * item.quantity() * 0.9;
         } else {
@@ -37,7 +36,6 @@ public class Cart {
     }
 
     public double getRunningTotalQuantityInKg() {
-
         return items.stream().mapToDouble(item -> item.quantity()).sum();
     }
 }
