@@ -3,18 +3,21 @@ package com.serenitydojo;
 import java.util.*;
 
 public class Catalog {
+
+    private Map<String, Double> fruitWithPrice = new HashMap<>();
+
     public void setPriceOf(Fruit fruit, double price) {
-        throw new RuntimeException("TODO, create a map to keep track of fruits and their prices");
-        // fruitToPrice.put(fruit.name(), price);
+        fruitWithPrice.put(fruit.name(), price);
     }
 
-    public static Catalog withItems(CatalogItem... catalogItems) {
-        throw new RuntimeException("TODO, create catalog and add items to the list of available fruits");
-        // Catalog catalog = new Catalog();
-        // for (CatalogItem catalogItem : catalogItems) {
-        //     catalog.availableFruits.add(catalogItem);
-        // }
-        // return catalog
+    public double getPriceOf(Fruit fruit) {
+        if (!fruitWithPrice.containsKey(fruit.name())) {
+            throw new FruitUnavailableException("We're sorry, the " + fruit + " is unavailable");
+        }
+        return fruitWithPrice.get(fruit.name());
     }
 
+    public List<String> getSortedListOfProducts() {
+        return fruitWithPrice.keySet().stream().sorted().toList();
+    }
 }
