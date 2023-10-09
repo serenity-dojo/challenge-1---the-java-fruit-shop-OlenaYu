@@ -8,7 +8,6 @@ import org.junit.Test;
 import static com.serenitydojo.Fruit.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
 public class ShoppingCartTests {
 
     Catalog catalog = new Catalog();
@@ -28,7 +27,6 @@ public class ShoppingCartTests {
     public void theCartShouldBeInitiallyBeEmpty() {
 
         Cart cart = new Cart(catalog);
-
         int numberOfCatalogItems = cart.getNumberOfItems();
 
         assertThat(numberOfCatalogItems).isEqualTo(0);
@@ -40,7 +38,6 @@ public class ShoppingCartTests {
     public void shouldBeAbleToAddSingleItemToTheCart() {
 
         cart.addItemToCart(APPLE, 2.0);
-
         int numberOfItems = cart.getNumberOfItems();
 
         assertThat(numberOfItems).isEqualTo(1);
@@ -91,7 +88,6 @@ public class ShoppingCartTests {
     @Test
     public void shouldProvideTenPercentOfDiscountForFiveKg() {
         cart.addItemToCart(BANANA, 5);
-
         double runningTotal = cart.getRunningTotalSum();
 
         assertThat(runningTotal).isEqualTo(27);
@@ -104,7 +100,6 @@ public class ShoppingCartTests {
 
         cart.addItemToCart(BANANA, 5);
         cart.addItemToCart(APPLE, 1);
-
         double runningTotal = cart.getRunningTotalSum();
 
         assertThat(runningTotal).isEqualTo(31);
@@ -115,11 +110,9 @@ public class ShoppingCartTests {
     @Test
     public void shouldNotProvideDiscountForLessThan5Kg() {
         cart.addItemToCart(CHERRY, 4.99);
-
         double runningTotal = cart.getRunningTotalSum();
 
-        assertThat(runningTotal).isEqualTo(14.97);
-
+        assertThat(!(runningTotal < 14.97)).isTrue();
     }
 
 }

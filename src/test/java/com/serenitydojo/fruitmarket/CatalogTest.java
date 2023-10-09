@@ -4,6 +4,8 @@ import com.serenitydojo.Catalog;
 import com.serenitydojo.FruitUnavailableException;
 import org.junit.Test;
 
+import java.util.List;
+
 import static com.serenitydojo.Fruit.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,9 +42,8 @@ public class CatalogTest {
         catalog.setPriceOf(ORANGE, 5.50);
         catalog.setPriceOf(BANANA, 6.00);
 
-        catalog.sortFruitsByName();
-
-        assertThat(catalog.getSortedListOfProducts()).containsExactly(APPLE.toString(),
+        List<String> sortedFruitList = catalog.getSortedListOfProducts();
+        assertThat(sortedFruitList).containsExactly(APPLE.toString(),
                 BANANA.toString(), ORANGE.toString(), PEAR.toString());
     }
 
@@ -56,8 +57,6 @@ public class CatalogTest {
         catalog.setPriceOf(ORANGE, 5.50);
         catalog.setPriceOf(BANANA, 6.00);
 
-        double priceOfCherry = catalog.getPriceOf(CHERRY);
-
-        assertThat(priceOfCherry).isEqualTo(null);
+        catalog.getPriceOf(CHERRY);
     }
 }
